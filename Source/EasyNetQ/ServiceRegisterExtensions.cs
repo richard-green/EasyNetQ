@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using EasyNetQ.ConnectionString;
 using EasyNetQ.Consumer;
 using EasyNetQ.DI;
@@ -125,6 +125,18 @@ namespace EasyNetQ
         )
         {
             return serviceRegister.Register<IScheduler, DeadLetterExchangeAndMessageTtlScheduler>();
+        }
+
+        /// <summary>
+        ///     Enables support of scheduling messages using a topic-named DLX + Per-Message TTL.
+        ///     See <see cref="TopicDeadLetterExchangeAndPerMessageTtlScheduler"/> for more details
+        /// </summary>
+        /// <param name="serviceRegister">The register</param>
+        public static IServiceRegister EnableTopicDeadLetterExchangeAndPerMessageTtlScheduler(
+            this IServiceRegister serviceRegister
+        )
+        {
+            return serviceRegister.Register<IScheduler, TopicDeadLetterExchangeAndPerMessageTtlScheduler>();
         }
 
         /// <summary>
